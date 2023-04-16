@@ -7,19 +7,22 @@
 			$course = "";
 			$level = "";
 	
-			if(isset($_GET["id"]))
-			{
+			
 				$id = trim($_GET["id"]);
 			
 				//2. query the record
-				$connection = mysqli_connect("localhost", "root", "", "skill");
+				$con=dbconnect();
 						
-				if($connection)
+				if(!$con)
 				{
-					$records = mysqli_query($connection, "select * from student where id = ".$id." ");
+					die("Connection Error: ".mysqli_connect_error());
+				}
+					$records = mysqli_query($con, "select * from student where id = ".$id." ");
+					if(mysqli_num_rows($records) == 0 ){
+						header("location:studentlist.php?message=RECORD NOT FOUND!");
+					}
 					
-					if(mysqli_num_rows($records) > 0)
-					{
+					
 						while($rec = mysqli_fetch_row($records))
 						{
 							$idno = $rec[1];
@@ -28,13 +31,17 @@
 							$course = $rec[4];
 							$level = $rec[5];
 						}
-					}
-				}
-			}
+					
+				
+			
 ?>
 <html>
 	<head>
 	<title>Update Student</title>
+	<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="ie-edge,chrome=1.0,safari">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="stylesheet" href="assets/css/w3.css">
 	</head>
 <body>
 <div class="w3-container w3-blue">

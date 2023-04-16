@@ -14,11 +14,19 @@
 	<body>
 		<div class="w3-blue w3-padding-large w3-card-2">
 			<h3>STUDENT</h3>
-			<a href="logout.php" class="w3-right w3-button">LOG-OUT</a>
-			<br>
-			<br>
-			
+			</div>
+		<div>	
+			<a href="logout.php" class="w3-right w3-button w3-red "  >LOG-OUT</a>
 		</div>
+		
+		<br>
+		<p class="w3-center w3-padding:20px w3-yellow ">
+						<?php
+							if(isset($_GET['message'])){
+								echo $_GET['message'];
+							}
+						?>
+					</p>
 		<div class="w3-padding-large">
 			<button class="w3-button w3-blue w3-right" onclick="modalcontrol('mymodal','block')">+ADD</button>
 			<br><br>
@@ -62,7 +70,7 @@
 				</div>
 				<div class="w3-padding-large">
 					<form action="studentlist.php" method="post">
-					<input type="text" name="id" value=<?php echo $student['id']?>>
+					<input type=hidden name="id" value=<?php echo $student['id']?>>
 					<p>
 						<label><b>IDNO</b></label>
 						<input type="text" id="idno" name="idno" class="w3-input w3-border">
