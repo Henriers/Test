@@ -9,9 +9,10 @@
 		$row=getrecord('user',['username','password'],[$uname,$pword]);
 		if($row!=null){
 			$_SESSION['user']=$uname;
-			header("location:studentlist.php?user=".$uname."?message=LOGIN SUCCESSFUL!");
+			header("location:studentlist.php?message=".urlencode('LOGIN SUCCESSFUL!'));
 		}
 		else
-			header("location:index.php?message=INVALID USER");
+			header("location:index.php?message=".urlencode('INVALID USER'));
+		
 	}
 ?>

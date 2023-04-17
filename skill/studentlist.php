@@ -50,8 +50,8 @@
 							echo "<td>";
 								echo "<button onclick=removeitem(".$student['id'].")>&times;</button>";
 								echo "&nbsp;";
-								echo "<button onclick=updateitem('".$student['id']."','".$student['idno']."','".$student['lastname']."','".$student['firstname']."','".$student['course']."','".$student['level']."')>&#9998;</button>";
-								//echo "<button onclick=updateitem(".$student['id'].")>&#9998;</button>";
+								//echo "<button onclick=updateitem('".$student['id']."','".$student['idno']."','".$student['lastname']."','".$student['firstname']."','".$student['course']."','".$student['level']."')>&#9998;</button>";
+								echo "<button onclick=updateitem(".$student['id'].")>&#9998;</button>";
 								
 							echo "</td>";
 						echo "</tr>";
@@ -121,7 +121,7 @@
 		$sql = "insert into student (idno, lastname, firstname, course,level)
 									values ('".$idno."','".$lastname."','".$firstname."','".$course."','".$level."')";
 			mysqli_query($con,$sql);
-			header("location:studentlist.php?=STUDENT ADDED");
+			header("location:studentlist.php?message=".urlencode('STUDENT ADDED SUCCESSFULLY!'));
 			mysqli_close($con);
 	}
 		?>
